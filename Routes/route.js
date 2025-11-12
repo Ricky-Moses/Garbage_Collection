@@ -1,8 +1,8 @@
 import express from "express";
-import Electronics from "../Controllers/electronics.js";
+import DynamicGet from "../Controllers/DynamicProducts.js";
 
 const router = express.Router();
 
-router.get("/electronics", Electronics);
+router.get("/:collection", DynamicGet);
 
 export default router;

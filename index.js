@@ -17,11 +17,14 @@ app.get("/", (req, res) => {
   res.status(200).json({ msg: "Hello! There it's from server side!" });
 });
 
-app.use("/api", router);
+app.use("/api/get", router);
 
-ConnectDB().catch((err) => {
-  console.error(`Error connecting to database: ${err.message}`);
-});
-
-// ✅ Export app for Vercel
-export default app;
+ConnectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.info(`Server running at http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error(err);
+  });
